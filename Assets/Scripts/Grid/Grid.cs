@@ -37,7 +37,12 @@ public class Grid : MonoBehaviour
         }
     }
 
-    private Cell CellFromWorldPosition(Vector3 worldPosition)
+    private void Start()
+    {
+        CreateGrid();
+    }
+
+    public Cell CellFromWorldPosition(Vector3 worldPosition)
     {
         float percentX = Mathf.Clamp01(worldPosition.x / gridWorldSize.x + 0.5f);
         float percentY = Mathf.Clamp01(worldPosition.z / gridWorldSize.y + 0.5f);
