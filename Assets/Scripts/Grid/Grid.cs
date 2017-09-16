@@ -21,19 +21,19 @@ public class Grid : MonoBehaviour
     {
         CreateGrid();
 
-        if (showGrid)
+        if (!showGrid)
+            return;
+
+        if (grid == null)
+            return;
+
+        Gizmos.DrawWireCube(transform.position, new Vector3(gridWorldSize.x, transform.position.y + 1, gridWorldSize.y));
+        Vector3 cellDimensions = new Vector3(cellSize - .1f, 0.1f, cellSize - .1f);
+        foreach (Cell cell in grid)
         {
-            if (grid != null)
-            {
-                Gizmos.DrawWireCube(transform.position, new Vector3(gridWorldSize.x, transform.position.y + 1, gridWorldSize.y));
-                Vector3 cellDimensions = new Vector3(cellSize - .1f, 0.1f, cellSize - .1f);
-                foreach (Cell cell in grid)
-                {
-                    Gizmos.color = cell.IsOccupied ? Color.red : Color.white;
-                    
-                    Gizmos.DrawCube(cell.Position, cellDimensions);
-                }
-            }
+            Gizmos.color = cell.IsOccupied ? Color.red : Color.white;
+            
+            Gizmos.DrawCube(cell.Position, cellDimensions);
         }
     }
 
