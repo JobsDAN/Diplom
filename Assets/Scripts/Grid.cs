@@ -4,25 +4,35 @@ using System.Collections.Generic;
 public class Grid : MonoBehaviour
 {
     [SerializeField]
-    private float CellSize;
-
+    private float cellSize;
+    
     private const int DEFAULT_PLANE_MESH_SIZE = 10;
+
+    private void OnDrawGizmos()
+    {
+        CreateGrid();
+    }
 
     private void Awake()
     {
+        CreateGrid();
+    }
+
+    private void CreateGrid()
+    {
         List<Vector3> vertices = new List<Vector3>();
         List<int> indices = new List<int>();
-        
+
         float gridWidth = GetComponentInParent<Transform>().localScale.x;
         float gridHeight = GetComponentInParent<Transform>().localScale.z;
 
-        int rowCount = (int)(gridWidth / CellSize) * DEFAULT_PLANE_MESH_SIZE;
-        int columnCount = (int)(gridHeight / CellSize) * DEFAULT_PLANE_MESH_SIZE;
+        int rowCount = (int)(gridWidth / cellSize) * DEFAULT_PLANE_MESH_SIZE;
+        int columnCount = (int)(gridHeight / cellSize) * DEFAULT_PLANE_MESH_SIZE;
 
-        float rowLength = columnCount * CellSize;
+        float rowLength = columnCount * cellSize;
         for (int i = 0; i <= rowCount; i++)
         {
-            float x = i * CellSize;
+            float x = i * cellSize;
 
             vertices.Add(new Vector3(x, 0, 0));
             vertices.Add(new Vector3(x, 0, rowLength));
@@ -31,10 +41,10 @@ public class Grid : MonoBehaviour
             indices.Add(vertices.Count - 1);
         }
 
-        float columnLength = rowCount * CellSize;
+        float columnLength = rowCount * cellSize;
         for (int i = 0; i <= columnCount; i++)
         {
-            float z = i * CellSize;
+            float z = i * cellSize;
 
             vertices.Add(new Vector3(0, 0, z));
             vertices.Add(new Vector3(columnLength, 0, z));
@@ -49,9 +59,5 @@ public class Grid : MonoBehaviour
 
         MeshFilter filter = gameObject.GetComponent<MeshFilter>();
         filter.mesh = mesh;
-
-        MeshRenderer meshRenderer = gameObject.GetComponent<MeshRenderer>();
-        meshRenderer.material = new Material(Shader.Find("Sprites/Default"));
-        meshRenderer.material.color = Color.white;
     }
 }
