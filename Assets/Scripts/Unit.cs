@@ -43,7 +43,8 @@ public class Unit : MonoBehaviour {
 
 		RaycastHit hit;
 		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-		if (!Physics.Raycast(ray, out hit))
+		Collider gridCollider = GameObject.Find("Grid").GetComponent<Collider>();
+		if (!gridCollider.Raycast(ray, out hit, Mathf.Infinity))
 			return;
 
 		if (hit.transform.gameObject == null)
