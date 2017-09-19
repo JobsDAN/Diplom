@@ -9,6 +9,15 @@ public class Flock : MonoBehaviour {
 	const int LEFT_MOUSE_BUTTON = 0;
 	const int RIGHT_MOUSE_BUTTON = 1;
 
+	Collider groundCollider;
+	Grid grid;
+
+	void Start() {
+		GameObject groundGameObject = GameObject.Find("Grid");
+		groundCollider = groundGameObject.GetComponent<Collider>();
+		grid = groundGameObject.GetComponent<Grid>();
+	}
+
 	void Update () {
 		if (Input.GetMouseButtonDown(LEFT_MOUSE_BUTTON)) {
 			SelectClick();
@@ -19,14 +28,13 @@ public class Flock : MonoBehaviour {
 	}
 
 	private void MoveClick() {
-		if (selectedFlock != transform.gameObject) {
+		if (selectedFlock != this) {
 			return;
 		}
 
 		RaycastHit hit;
 		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-		Collider gridCollider = GameObject.Find("Grid").GetComponent<Collider>();
-		if (!gridCollider.Raycast(ray, out hit, Mathf.Infinity)) {
+		if (!groundCollider.Raycast(ray, out hit, Mathf.Infinity)) {
 			return;
 		}
 
@@ -34,7 +42,6 @@ public class Flock : MonoBehaviour {
 			return;
 		}
 
-		Grid grid = GameObject.Find("Grid").GetComponent<Grid> ();
 		Cell c = grid.CellFromWorldPosition(hit.point);
 		Vector3 newPosition = c.Position;
 		newPosition.y = transform.position.y;
