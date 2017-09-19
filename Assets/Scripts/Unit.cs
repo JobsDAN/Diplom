@@ -27,13 +27,13 @@ public class Unit : MonoBehaviour {
 	{
 	}
 
-	private void Select()
+	public void Select()
 	{
 		material.shader = outlineShader;
 		material.SetColor("_OutlineColor", Color.red);
 	}
 
-	private void Unselect()
+	public void Unselect()
 	{
 		material.shader = defaultShader;
 	}
