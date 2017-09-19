@@ -19,6 +19,10 @@ public class Grid : MonoBehaviour
         
     private void OnDrawGizmos()
     {
+        if (cellSize < 1e-7) {
+            return;
+        }
+
         CreateGrid();
 
         if (!showGrid)

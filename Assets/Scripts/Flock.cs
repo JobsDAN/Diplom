@@ -9,17 +9,23 @@ public class Flock : MonoBehaviour {
 	private float speed = 0.05f;
 	private Queue<Vector3> path;
 
+	private List<Unit> units;
+
 	const int LEFT_MOUSE_BUTTON = 0;
 	const int RIGHT_MOUSE_BUTTON = 1;
 
 	Collider groundCollider;
 	Grid grid;
 
+	void Awake() {
+		path = new Queue<Vector3>();
+		units = new List<Unit>();
+	}
+
 	void Start() {
 		GameObject groundGameObject = GameObject.Find("Grid");
 		groundCollider = groundGameObject.GetComponent<Collider>();
 		grid = groundGameObject.GetComponent<Grid>();
-		path = new Queue<Vector3>();
 	}
 
 	void Update () {
@@ -97,8 +103,7 @@ public class Flock : MonoBehaviour {
 	}
 
 	private void Select() {
-		foreach (Transform child in transform) {
-			Unit unit = child.gameObject.GetComponent<Unit>();
+		foreach (Unit unit in units) {
 			unit.Select();
 		}
 
@@ -106,11 +111,14 @@ public class Flock : MonoBehaviour {
 	}
 
 	private void Unselect() {
-		foreach (Transform child in transform) {
-			Unit unit = child.gameObject.GetComponent<Unit>();
+		foreach (Unit unit in units) {
 			unit.Unselect();
 		}
 
 		selectedFlock = null;
+	}
+
+	public void AddUnit(Unit unit) {
+		units.Add(unit);
 	}
 }
