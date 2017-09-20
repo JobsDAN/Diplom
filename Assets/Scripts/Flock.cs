@@ -22,7 +22,7 @@ public class Flock : MonoBehaviour {
 	}
 
 	void Start() {
-		GameObject groundGameObject = GameObject.Find("Grid");
+		GameObject groundGameObject = GameObject.Find("Ground");
 		groundCollider = groundGameObject.GetComponent<Collider>();
 	}
 
