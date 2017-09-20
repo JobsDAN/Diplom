@@ -37,6 +37,14 @@ public class Flock : MonoBehaviour {
 			return;
 		}
 
+		FollowUnits();
+	}
+
+	private void FollowUnits() {
+		if (units.Count == 0) {
+			return;
+		}
+
 		Vector3 centerOfMass = new Vector3();
 		foreach (Unit unit in units) {
 			centerOfMass += unit.Position;
