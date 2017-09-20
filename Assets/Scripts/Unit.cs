@@ -7,21 +7,16 @@ public class Unit : MonoBehaviour {
 	Material material;
 	Shader outlineShader;
 	Shader defaultShader;
-
 	NavMeshAgent agent;
 
-	void Start() {
+	void Awake() {
 		agent = GetComponent<NavMeshAgent>();
 		material = GetComponent<Renderer>().material;
+	}
+
+	void Start() {
 		defaultShader = material.shader;
 		outlineShader = Shader.Find("Outlined/Silhouetted Bumped Diffuse");
-	}
-
-	Vector3 computeAlignment() {
-		return new Vector3();
-	}
-
-	void Update() {
 	}
 
 	public void Select() {
@@ -35,9 +30,15 @@ public class Unit : MonoBehaviour {
 
 	public void MoveTo(Vector3 dest) {
 		agent.destination = dest;
+		agent.isStopped = false;
+	}
+
+	public void StopMoving() {
+		agent.isStopped = true;
 	}
 
 	public Vector3 Position {
 		get { return transform.position; }
 	}
+
 }

@@ -14,6 +14,9 @@ public class Spawner : MonoBehaviour {
 	[SerializeField]
 	private float period = 2f;
 
+	[SerializeField]
+	private float firstTime = 2f;
+
 	private Vector3 size;
 	private Vector3 position;
 	// Use this for initialization
@@ -21,7 +24,6 @@ public class Spawner : MonoBehaviour {
 		size = GetComponent<Renderer>().bounds.size;
 		unitSize = unitPrefab.GetComponent<Renderer>().bounds.size;
 		position = transform.position;
-		float firstTime = period;
 		InvokeRepeating("SpawnUnit", firstTime, period);
 	}
 	

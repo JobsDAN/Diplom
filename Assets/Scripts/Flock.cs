@@ -6,8 +6,7 @@ public class Flock : MonoBehaviour {
 
 	static private Flock selectedFlock;
 
-	private float speed = 0.05f;
-	private Queue<Vector3> path;
+	private Vector3 destination;
 
 	private List<Unit> units;
 
@@ -17,8 +16,9 @@ public class Flock : MonoBehaviour {
 	Collider groundCollider;
 	Grid grid;
 
+	float stopDistance = 1f;
+
 	void Awake() {
-		path = new Queue<Vector3>();
 		units = new List<Unit>();
 	}
 
@@ -45,8 +45,13 @@ public class Flock : MonoBehaviour {
 		}
 
 		centerOfMass /= units.Count;
-
 		transform.position = centerOfMass;
+		float dist = Vector3.Distance(centerOfMass, destination);
+		if (dist < stopDistance) {
+			foreach (Unit unit in units) {
+				unit.StopMoving();
+			}
+		}
 	}
 
 	private void MoveClick() {
@@ -64,14 +69,9 @@ public class Flock : MonoBehaviour {
 			return;
 		}
 
-		Cell c = grid.CellFromWorldPosition(hit.point);
-		Vector3 newPosition = c.Position;
-		newPosition.y = transform.position.y;
-		path.Clear();
-		path.Enqueue(newPosition);
-
+		destination = hit.point;
 		foreach (Unit unit in units) {
-			unit.MoveTo(newPosition);
+			unit.MoveTo(destination);
 		}
 	}
 
