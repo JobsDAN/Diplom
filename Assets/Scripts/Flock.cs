@@ -39,21 +39,14 @@ public class Flock : MonoBehaviour {
 			return;
 		}
 
-		if (path.Count == 0) {
-			return;
+		Vector3 centerOfMass = new Vector3();
+		foreach (Unit unit in units) {
+			centerOfMass += unit.Position;
 		}
 
-		Vector3 dest = path.Peek();
-		Vector3 direction = dest - transform.position;
-		Vector3 step = direction.normalized * speed;
-		float time = Time.deltaTime;
-		float distThisFrame = speed * time;
-		if (direction.magnitude < step.magnitude) {
-			path.Dequeue();
-			transform.position = dest;
-		}
+		centerOfMass /= units.Count;
 
-		transform.Translate(step);
+		transform.position = centerOfMass;
 	}
 
 	private void MoveClick() {
@@ -74,7 +67,12 @@ public class Flock : MonoBehaviour {
 		Cell c = grid.CellFromWorldPosition(hit.point);
 		Vector3 newPosition = c.Position;
 		newPosition.y = transform.position.y;
+		path.Clear();
 		path.Enqueue(newPosition);
+
+		foreach (Unit unit in units) {
+			unit.MoveTo(newPosition);
+		}
 	}
 
 	private void SelectClick() {
