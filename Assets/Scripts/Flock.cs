@@ -14,7 +14,6 @@ public class Flock : MonoBehaviour {
 	const int RIGHT_MOUSE_BUTTON = 1;
 
 	Collider groundCollider;
-	Grid grid;
 
 	float stopDistance = 1f;
 
@@ -25,7 +24,6 @@ public class Flock : MonoBehaviour {
 	void Start() {
 		GameObject groundGameObject = GameObject.Find("Grid");
 		groundCollider = groundGameObject.GetComponent<Collider>();
-		grid = groundGameObject.GetComponent<Grid>();
 	}
 
 	void Update () {
