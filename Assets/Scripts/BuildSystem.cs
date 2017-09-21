@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.EventSystems;
 
 public class BuildSystem : MonoBehaviour {
 
@@ -22,10 +23,12 @@ public class BuildSystem : MonoBehaviour {
 
 	void Update () {
 		// Follow mouse
-		if (currentObject) {
+		if (currentObject)
+		{
 			RaycastHit hit;
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-			if (!groundCollider.Raycast(ray, out hit, Mathf.Infinity)) {
+			if (!groundCollider.Raycast(ray, out hit, Mathf.Infinity))
+			{
 				return;
 			}
 
@@ -37,27 +40,33 @@ public class BuildSystem : MonoBehaviour {
 		}
 
 		// Right mouse click to cancel building
-		if (Input.GetMouseButtonDown(RIGHT_MOUSE_BUTTON)) {
+		if (Input.GetMouseButtonDown(RIGHT_MOUSE_BUTTON))
+		{
 			Destroy(currentObject);
 			currentObject = null;
 			return;
 		}
 
 		// Place on left mouse click
-		if (Input.GetMouseButtonDown(LEFT_MOUSE_BUTTON)) {
-			currentObject.GetComponent<NavMeshObstacle>().enabled = true;
-			currentObject = null;
+		if (Input.GetMouseButtonDown(LEFT_MOUSE_BUTTON) &&
+			// Avoid build under UI
+			!EventSystem.current.IsPointerOverGameObject())
+		{
+				currentObject.GetComponent<NavMeshObstacle>().enabled = true;
+				currentObject = null;
 		}
 	}
 
 	public void BuildBox() {
 		RaycastHit hit;
 		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-		if (!groundCollider.Raycast(ray, out hit, Mathf.Infinity)) {
+		if (!groundCollider.Raycast(ray, out hit, Mathf.Infinity))
+		{
 			return;
 		}
 
-		if (currentObject != null) {
+		if (currentObject != null)
+		{
 			Destroy(currentObject);
 			currentObject = null;
 			return;
