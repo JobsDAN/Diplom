@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class BuildSystem : MonoBehaviour {
 
@@ -44,6 +45,7 @@ public class BuildSystem : MonoBehaviour {
 
 		// Place on left mouse click
 		if (Input.GetMouseButtonDown(LEFT_MOUSE_BUTTON)) {
+			currentObject.GetComponent<NavMeshObstacle>().enabled = true;
 			currentObject = null;
 		}
 	}
