@@ -879,6 +879,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boxPrefab: {fileID: 1467048017274900, guid: bd0ff7fa33ed84e5aa5d01cc43f31fac, type: 2}
+  avaliableMaterial: {fileID: 2100000, guid: fd05125a726e94794b26aef219ef5e7a, type: 2}
+  unavaliableMaterial: {fileID: 2100000, guid: b4565845d8b214ae8a221b89865773cc, type: 2}
 --- !u!4 &2123685098
 Transform:
   m_ObjectHideFlags: 0
