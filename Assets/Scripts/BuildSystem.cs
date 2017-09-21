@@ -16,6 +16,9 @@ public class BuildSystem : MonoBehaviour {
 		groundCollider = groundGameObject.GetComponent<Collider>();
 	}
 	
+	const int LEFT_MOUSE_BUTTON = 0;
+	const int RIGHT_MOUSE_BUTTON = 1;
+
 	void Update () {
 		// Follow mouse
 		if (currentObject) {
@@ -25,11 +28,22 @@ public class BuildSystem : MonoBehaviour {
 				return;
 			}
 
-			currentObject.transform.position = hit.point;
+			Vector3 size = boxPrefab.GetComponent<Renderer>().bounds.size;
+			Vector3 pos = hit.point;
+			pos.y = size.y / 2;
+
+			currentObject.transform.position = pos;
+		}
+
+		// Right mouse click to cancel building
+		if (Input.GetMouseButtonDown(RIGHT_MOUSE_BUTTON)) {
+			Destroy(currentObject);
+			currentObject = null;
+			return;
 		}
 
 		// Place on left mouse click
-		if (Input.GetMouseButtonDown(0)) {
+		if (Input.GetMouseButtonDown(LEFT_MOUSE_BUTTON)) {
 			currentObject = null;
 		}
 	}
@@ -48,9 +62,6 @@ public class BuildSystem : MonoBehaviour {
 		}
 
 		Quaternion q = new Quaternion();
-		Vector3 size = boxPrefab.GetComponent<Renderer>().bounds.size;
-		Vector3 pos = hit.point;
-		pos += new Vector3(0, size.y / 2, 0);
-		currentObject = Instantiate<GameObject>(boxPrefab, pos, q);
+		currentObject = Instantiate<GameObject>(boxPrefab, hit.point, q);
 	}
 }
