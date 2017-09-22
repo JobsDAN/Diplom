@@ -21,8 +21,13 @@ public class Spawner : MonoBehaviour {
 	private Vector3 position;
 	// Use this for initialization
 	void Start () {
-		size = GetComponent<Renderer>().bounds.size;
-		unitSize = unitPrefab.GetComponent<Renderer>().bounds.size;
+        Renderer unitRenderer = unitPrefab.GetComponent<Renderer>();
+        if (unitRenderer == null)
+        {
+            unitRenderer = unitPrefab.GetComponentInChildren<Renderer>();
+        }
+        size = GetComponent<Renderer>().bounds.size;
+		unitSize = unitRenderer.bounds.size;
 		position = transform.position;
 		InvokeRepeating("SpawnUnit", firstTime, period);
 	}
@@ -37,7 +42,7 @@ public class Spawner : MonoBehaviour {
 
 		Vector3 pos = new Vector3(position.x + x, 0.5f, position.z + z);
 		Quaternion q = new Quaternion();
-		GameObject flockGameObject = Instantiate<GameObject>(flockPrefab, pos, q);
+		GameObject flockGameObject = Instantiate(flockPrefab, pos, q);
 		Flock flock = flockGameObject.GetComponent<Flock>();
 		for (int i = -1; i <= 1; i++) {
 			for (int j = -1; j <= 1; j++) {
@@ -45,7 +50,7 @@ public class Spawner : MonoBehaviour {
 				float uz = j * unitSize.z * 2;
 				Vector3 offset = new Vector3(ux, 0, uz);
 				Vector3 unitPos = pos + offset;
-				GameObject unitGameObject = Instantiate<GameObject>(unitPrefab, unitPos, q);
+				GameObject unitGameObject = Instantiate(unitPrefab, unitPos, q);
 				Unit unit = unitGameObject.GetComponent<Unit>();
 				flock.AddUnit(unit);
 			}
