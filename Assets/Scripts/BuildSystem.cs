@@ -30,7 +30,7 @@ public class BuildSystem : MonoBehaviour {
 
 	bool BuildAvaliable()
 	{
-		Vector3 size = boxPrefab.GetComponent<Renderer>().bounds.size;
+		Vector3 size = currentObject.GetComponent<Renderer>().bounds.size;
 		Vector3 pos = currentObject.transform.position;
 		Quaternion q = currentObject.transform.rotation;
 		foreach (Collider coll in Physics.OverlapBox(pos, size / 1.5f, q))
@@ -107,7 +107,8 @@ public class BuildSystem : MonoBehaviour {
 		}
 	}
 
-	public void BuildBox() {
+	public void Build(GameObject prefab)
+	{
 		RaycastHit hit;
 		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 		if (!groundCollider.Raycast(ray, out hit, Mathf.Infinity))
@@ -120,7 +121,12 @@ public class BuildSystem : MonoBehaviour {
 		}
 
 		Quaternion q = new Quaternion();
-		currentObject = Instantiate<GameObject>(boxPrefab, hit.point, q);
+		currentObject = Instantiate<GameObject>(prefab, hit.point, q);
 		currentMaterial = currentObject.GetComponent<Renderer>().material;
+	}
+
+	public void BuildBox()
+	{
+		Build(boxPrefab);
 	}
 }
