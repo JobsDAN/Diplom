@@ -24,6 +24,8 @@ public class Flock : MonoBehaviour {
 	void Start() {
 		GameObject groundGameObject = GameObject.Find("Ground");
 		groundCollider = groundGameObject.GetComponent<Collider>();
+		Vector3 size = transform.localScale;
+		stopDistance = (size.x + size.z) / 4;
 	}
 
 	void Update () {
@@ -40,23 +42,35 @@ public class Flock : MonoBehaviour {
 		FollowUnits();
 	}
 
-	private void FollowUnits() {
-		if (units.Count == 0) {
+	private bool IsDestinationReached
+	{
+		get { return destination.x == 0 && destination.y == 0 && destination.z == 0; }
+	}
+
+	private void FollowUnits()
+	{
+		if (IsDestinationReached || units.Count == 0)
+		{
 			return;
 		}
 
 		Vector3 centerOfMass = new Vector3();
-		foreach (Unit unit in units) {
+		foreach (Unit unit in units)
+		{
 			centerOfMass += unit.Position;
 		}
 
 		centerOfMass /= units.Count;
 		transform.position = centerOfMass;
 		float dist = Vector3.Distance(centerOfMass, destination);
-		if (dist < stopDistance) {
-			foreach (Unit unit in units) {
+		if (dist < stopDistance)
+		{
+			foreach (Unit unit in units)
+			{
 				unit.StopMoving();
 			}
+
+			destination = new Vector3();
 		}
 	}
 
