@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.45124555, g: 0.50095177, b: 0.57350224, a: 1}
+  m_IndirectSpecularColor: {r: 0.44522554, g: 0.4948489, b: 0.57388633, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -378,13 +378,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 389107057}
-  m_LocalRotation: {x: 0.20533112, y: -0, z: -0, w: 0.9786926}
-  m_LocalPosition: {x: 0, y: 9.2, z: -12.16}
+  m_LocalRotation: {x: 0.3955454, y: -0, z: -0, w: 0.9184465}
+  m_LocalPosition: {x: 0, y: 21.72, z: -18.93}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 23.698002, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 46.600002, y: 0, z: 0}
 --- !u!1 &397072415
 GameObject:
   m_ObjectHideFlags: 0
@@ -570,7 +570,7 @@ MonoBehaviour:
   unitPrefab: {fileID: 1775584910347028, guid: 0eda0c71ccf8aec458ca5d8ac0cbf55a, type: 2}
   flockPrefab: {fileID: 1517929297859738, guid: 8da5fd9ae5bc84670be373d8f2bb03cf,
     type: 2}
-  period: 2
+  period: 10
   firstTime: 2
 --- !u!1 &1524204494
 GameObject:
@@ -630,13 +630,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1524204494}
-  m_LocalRotation: {x: -0.8976162, y: 0.17056188, z: 0.225249, w: -0.33831465}
-  m_LocalPosition: {x: 4.17, y: 4.46, z: 5.89}
+  m_LocalRotation: {x: -0.44967464, y: -0.38121325, z: 0.11545868, w: -0.79946136}
+  m_LocalPosition: {x: 4.96, y: 6.93, z: 3.43}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 147.95999, y: -3202.18, z: 32.75299}
+  m_LocalEulerAnglesHint: {x: 126.194, y: -3001.09, z: 195.543}
 --- !u!1 &1912608362
 GameObject:
   m_ObjectHideFlags: 0
