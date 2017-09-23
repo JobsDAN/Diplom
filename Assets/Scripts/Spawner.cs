@@ -40,7 +40,7 @@ public class Spawner : MonoBehaviour {
 			z = Random.Range(-size.z * 3, size.z * 3);
 		}
 
-		Vector3 pos = new Vector3(position.x + x, 0.5f, position.z + z);
+		Vector3 pos = new Vector3(position.x + x, 0, position.z + z);
 		Quaternion q = new Quaternion();
 		GameObject flockGameObject = Instantiate(flockPrefab, pos, q);
 		Flock flock = flockGameObject.GetComponent<Flock>();
