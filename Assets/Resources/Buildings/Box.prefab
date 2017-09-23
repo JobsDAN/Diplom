@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 65501442471829522}
   - component: {fileID: 23215962868076664}
   - component: {fileID: 208300811148141840}
+  - component: {fileID: 114002816357339500}
   m_Layer: 0
   m_Name: Box
   m_TagString: Building
@@ -94,6 +95,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114002816357339500
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1467048017274900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f70a891c8c1a46dfb723c39a8f0bc2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Box
+  Sprite: {fileID: 21300000, guid: 1fe27a1ee1f264bd08d1fe06555eb083, type: 3}
 --- !u!208 &208300811148141840
 NavMeshObstacle:
   m_ObjectHideFlags: 1
