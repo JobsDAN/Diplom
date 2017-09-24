@@ -27,6 +27,16 @@ public class Unit : MonoBehaviour {
 		outlineShader = Shader.Find("Outlined/Silhouetted Bumped Diffuse");
 	}
 
+	void Update() {
+		float dist = agent.remainingDistance;
+		float stopDist = agent.stoppingDistance;
+
+		bool close = dist <= stopDist;
+		bool stop = !agent.hasPath || agent.velocity.sqrMagnitude == 0f;
+
+		if (!agent.pathPending && close && stop)
+			StopMoving();
+	}
 	public void Select() {
 		material.shader = outlineShader;
 		material.SetColor("_OutlineColor", Color.red);
@@ -38,12 +48,10 @@ public class Unit : MonoBehaviour {
 
 	public void MoveTo(Vector3 dest) {
 		agent.destination = dest;
-		agent.isStopped = false;
         animator.SetBool("IsRun", true);
 	}
 
 	public void StopMoving() {
-		agent.isStopped = true;
         animator.SetBool("IsRun", false);
     }
 

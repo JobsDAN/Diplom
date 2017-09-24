@@ -9,23 +9,23 @@ public class Flock : MonoBehaviour {
 	private Vector3 destination;
 
 	private List<Unit> units;
+	private List<Vector3> positions;
 
 	const int LEFT_MOUSE_BUTTON = 0;
 	const int RIGHT_MOUSE_BUTTON = 1;
 
 	Collider groundCollider;
 
-	float stopDistance = 1f;
 
 	void Awake() {
 		units = new List<Unit>();
+		positions = new List<Vector3>();
 	}
 
 	void Start() {
 		GameObject groundGameObject = GameObject.Find("Ground");
 		groundCollider = groundGameObject.GetComponent<Collider>();
 		Vector3 size = transform.localScale;
-		stopDistance = (size.x + size.z) / 4;
 	}
 
 	void Update () {
@@ -62,16 +62,6 @@ public class Flock : MonoBehaviour {
 
 		centerOfMass /= units.Count;
 		transform.position = centerOfMass;
-		float dist = Vector3.Distance(centerOfMass, destination);
-		if (dist < stopDistance)
-		{
-			foreach (Unit unit in units)
-			{
-				unit.StopMoving();
-			}
-
-			destination = new Vector3();
-		}
 	}
 
 	private void MoveClick() {
@@ -90,8 +80,8 @@ public class Flock : MonoBehaviour {
 		}
 
 		destination = hit.point;
-		foreach (Unit unit in units) {
-			unit.MoveTo(destination);
+		for (int i = 0; i < units.Count; i++) {
+			units[i].MoveTo(destination + positions[i]);
 		}
 	}
 
@@ -136,7 +126,8 @@ public class Flock : MonoBehaviour {
 		selectedFlock = null;
 	}
 
-	public void AddUnit(Unit unit) {
+	public void AddUnit(Unit unit, Vector3 pos) {
 		units.Add(unit);
+		positions.Add(pos);
 	}
 }

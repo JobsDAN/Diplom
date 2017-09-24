@@ -52,7 +52,7 @@ public class Spawner : MonoBehaviour {
 				Vector3 unitPos = pos + offset;
 				GameObject unitGameObject = Instantiate(unitPrefab, unitPos, q);
 				Unit unit = unitGameObject.GetComponent<Unit>();
-				flock.AddUnit(unit);
+				flock.AddUnit(unit, offset);
 			}
 		}
 	}
