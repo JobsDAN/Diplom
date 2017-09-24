@@ -37,6 +37,7 @@ public class Unit : MonoBehaviour {
 		if (!agent.pathPending && close && stop)
 			StopMoving();
 	}
+
 	public void Select() {
 		material.shader = outlineShader;
 		material.SetColor("_OutlineColor", Color.red);

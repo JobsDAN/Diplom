@@ -9,12 +9,6 @@ public class BuildSystem : MonoBehaviour {
 	[SerializeField]
 	GameObject boxPrefab;
 
-	[SerializeField]
-	Material avaliableMaterial;
-
-	[SerializeField]
-	Material unavaliableMaterial;
-
 	GameObject currentObject;
 	Material currentMaterial;
 
@@ -71,7 +65,7 @@ public class BuildSystem : MonoBehaviour {
 	void ColorizeBuilding(bool avaliable)
 	{
 		Renderer renderer = currentObject.GetComponent<Renderer>();
-		renderer.material = avaliable ? avaliableMaterial : unavaliableMaterial;
+		renderer.material.color = avaliable ? Color.green : Color.red;
 	}
 
 	void PlaceBuilding()
