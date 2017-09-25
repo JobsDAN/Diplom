@@ -16,7 +16,6 @@ public class Flock : MonoBehaviour {
 
 	Collider groundCollider;
 
-
 	void Awake() {
 		units = new List<Unit>();
 		positions = new List<Vector3>();
@@ -66,6 +65,11 @@ public class Flock : MonoBehaviour {
 
 	private void MoveClick() {
 		if (selectedFlock != this) {
+			return;
+		}
+
+		if (selectedFlock.units[0].Player != Player.SelfPlayer)
+		{
 			return;
 		}
 

@@ -7,12 +7,17 @@ public class Player
 	static Color[] defaultColors = { Color.red, Color.blue, Color.green };
 	static List<Color> colors;
 	static List<Player> players;
-	public Color Color
+	public static Player SelfPlayer
 	{
-		get { return colors[playerId]; }
+		get { return GetPlayer(0); }
 	}
 
-	public int playerId
+	public Color Color
+	{
+		get { return colors[PlayerId]; }
+	}
+
+	public int PlayerId
 	{
 		get; private set;
 	}
@@ -30,7 +35,7 @@ public class Player
 
 	private Player(int id)
 	{
-		playerId = id;
+		PlayerId = id;
 	}
 
 	public static Player NewPlayer()

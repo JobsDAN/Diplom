@@ -10,7 +10,10 @@ public class Unit : MonoBehaviour {
 	NavMeshAgent agent;
     Animator animator;
 
-	Player player;
+	public Player Player
+	{
+		get; private set;
+	}
 
 	void Awake() {
         Renderer renderer = GetComponent<Renderer>();
@@ -42,12 +45,12 @@ public class Unit : MonoBehaviour {
 
 	public void SetPlayer(Player p)
 	{
-		player = p;
+		Player = p;
 	}
 
 	public void Select() {
 		material.shader = outlineShader;
-		material.SetColor("_OutlineColor", player.Color);
+		material.SetColor("_OutlineColor", Player.Color);
 	}
 
 	public void Unselect() {
@@ -66,5 +69,4 @@ public class Unit : MonoBehaviour {
     public Vector3 Position {
 		get { return transform.position; }
 	}
-
 }
