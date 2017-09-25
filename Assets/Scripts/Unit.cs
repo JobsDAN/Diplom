@@ -10,6 +10,8 @@ public class Unit : MonoBehaviour {
 	NavMeshAgent agent;
     Animator animator;
 
+	Player player;
+
 	void Awake() {
         Renderer renderer = GetComponent<Renderer>();
         if (renderer == null)
@@ -38,9 +40,14 @@ public class Unit : MonoBehaviour {
 			StopMoving();
 	}
 
+	public void SetPlayer(Player p)
+	{
+		player = p;
+	}
+
 	public void Select() {
 		material.shader = outlineShader;
-		material.SetColor("_OutlineColor", Color.red);
+		material.SetColor("_OutlineColor", player.Color);
 	}
 
 	public void Unselect() {

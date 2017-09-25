@@ -71,7 +71,6 @@ public class BuildMenu : MonoBehaviour {
 
 		float x = screenWidth - menuWidth + cellSide / 2;
 		float y = menuHeight - cellSide / 2;
-		RectTransform rt = emptyCell.GetComponent<RectTransform>();
 		Vector2 size = new Vector2(cellSide, cellSide);
 		for (int i = 0; i < heightN; i++)
 		{

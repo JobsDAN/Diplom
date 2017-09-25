@@ -19,14 +19,29 @@ public class Spawner : MonoBehaviour {
 
 	private Vector3 size;
 	private Vector3 position;
+	private Player player;
+
 	// Use this for initialization
 	void Start () {
-        Renderer unitRenderer = unitPrefab.GetComponent<Renderer>();
-        if (unitRenderer == null)
-        {
-            unitRenderer = unitPrefab.GetComponentInChildren<Renderer>();
-        }
-        size = GetComponent<Renderer>().bounds.size;
+		player = Player.NewPlayer();
+		Renderer unitRenderer = unitPrefab.GetComponent<Renderer>();
+		if (unitRenderer == null)
+		{
+			unitRenderer = unitPrefab.GetComponentInChildren<Renderer>();
+		}
+
+		GameObject flag = null;
+		GameObject castle = null;
+		foreach (Transform child in transform)
+		{
+			if (child.name == "Flag")
+				flag = child.gameObject;
+			else if (child.name == "Castle")
+				castle = child.gameObject;
+		}
+
+		flag.GetComponent<Renderer>().material.color = player.Color;
+        size = castle.GetComponent<Renderer>().bounds.size;
 		unitSize = unitRenderer.bounds.size;
 		position = transform.position;
 		InvokeRepeating("SpawnUnit", firstTime, period);
@@ -52,6 +67,7 @@ public class Spawner : MonoBehaviour {
 				Vector3 unitPos = pos + offset;
 				GameObject unitGameObject = Instantiate(unitPrefab, unitPos, q);
 				Unit unit = unitGameObject.GetComponent<Unit>();
+				unit.SetPlayer(player);
 				flock.AddUnit(unit, offset);
 			}
 		}
