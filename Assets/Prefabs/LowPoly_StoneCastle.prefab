@@ -21,12 +21,13 @@ GameObject:
   - component: {fileID: 4731703859045330}
   - component: {fileID: 33126668463222526}
   - component: {fileID: 23454336920634626}
+  - component: {fileID: 65328320854203192}
   m_Layer: 0
   m_Name: Castle
-  m_TagString: Untagged
+  m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &1746406878790316
 GameObject:
@@ -36,9 +37,10 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4456917076692668}
+  - component: {fileID: 114660785827037946}
   m_Layer: 0
   m_Name: LowPoly_StoneCastle
-  m_TagString: Untagged
+  m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -55,7 +57,7 @@ GameObject:
   - component: {fileID: 23860501507833758}
   m_Layer: 0
   m_Name: Flag
-  m_TagString: Untagged
+  m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -82,7 +84,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1921807739275166}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -0, y: 1, z: 0}
+  m_LocalPosition: {x: -0, y: 1, z: -3.12}
   m_LocalScale: {x: 155.72807, y: 155.72807, z: 100}
   m_Children: []
   m_Father: {fileID: 4456917076692668}
@@ -94,13 +96,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1379833986840462}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -0, y: 1, z: 0}
+  m_LocalRotation: {x: -0.7069834, y: 0, z: 0, w: 0.7072302}
+  m_LocalPosition: {x: -0, y: 0.99, z: 0}
   m_LocalScale: {x: 155.72807, y: 155.72807, z: 100}
   m_Children: []
   m_Father: {fileID: 4456917076692668}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -89.98, y: 0, z: 0}
 --- !u!23 &23454336920634626
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -179,3 +181,31 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1921807739275166}
   m_Mesh: {fileID: 4300000, guid: 7693b29f641b86b47adcf0068c233afb, type: 3}
+--- !u!65 &65328320854203192
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1379833986840462}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.04751873, y: 0.047518723, z: 0.07994642}
+  m_Center: {x: 0, y: 0, z: 0.029973214}
+--- !u!114 &114660785827037946
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1746406878790316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d013a2a3debd4a3aba696ba62cb65d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitPrefab: {fileID: 1775584910347028, guid: 0eda0c71ccf8aec458ca5d8ac0cbf55a, type: 2}
+  flockPrefab: {fileID: 1517929297859738, guid: 8da5fd9ae5bc84670be373d8f2bb03cf,
+    type: 2}
+  period: 10
+  firstTime: 2
