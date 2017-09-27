@@ -151,7 +151,13 @@ Prefab:
         type: 2}
       propertyPath: unitPrefab
       value: 
-      objectReference: {fileID: 1497961183894090, guid: 5fa78e14f4f573149a25fb2e6028afa7,
+      objectReference: {fileID: 1382061630009782, guid: d15bb9849240a034fb413af5c2804ca2,
+        type: 2}
+    - target: {fileID: 114660785827037946, guid: 01663782047f9d446a37050c1fbbbace,
+        type: 2}
+      propertyPath: club
+      value: 
+      objectReference: {fileID: 1922263288154502, guid: 09543f147fb808e4f93bbdfa1df891b4,
         type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 01663782047f9d446a37050c1fbbbace, type: 2}
@@ -539,7 +545,13 @@ Prefab:
         type: 2}
       propertyPath: unitPrefab
       value: 
-      objectReference: {fileID: 1497961183894090, guid: 5fa78e14f4f573149a25fb2e6028afa7,
+      objectReference: {fileID: 1382061630009782, guid: d15bb9849240a034fb413af5c2804ca2,
+        type: 2}
+    - target: {fileID: 114660785827037946, guid: 01663782047f9d446a37050c1fbbbace,
+        type: 2}
+      propertyPath: club
+      value: 
+      objectReference: {fileID: 1922263288154502, guid: 09543f147fb808e4f93bbdfa1df891b4,
         type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 01663782047f9d446a37050c1fbbbace, type: 2}

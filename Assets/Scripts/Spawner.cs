@@ -3,10 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Spawner : MonoBehaviour {
+    [SerializeField]
+    private bool EquipClub;
+    [SerializeField]
+    private GameObject club;
 
-	[SerializeField]
+    [SerializeField]
 	private GameObject unitPrefab;
 	private Vector3 unitSize;
+
 
 	[SerializeField]
 	private GameObject flockPrefab;
@@ -66,7 +71,17 @@ public class Spawner : MonoBehaviour {
 				Vector3 offset = new Vector3(ux, 0, uz);
 				Vector3 unitPos = pos + offset;
 				GameObject unitGameObject = Instantiate(unitPrefab, unitPos, q);
-				Unit unit = unitGameObject.GetComponent<Unit>();
+                Unit unit = unitGameObject.GetComponent<Unit>();
+
+                if (EquipClub)
+                {
+                    SkinnedMeshRenderer unitMesh = unitGameObject.GetComponentInChildren<SkinnedMeshRenderer>();
+                    SkinnedMeshRenderer newMesh = Instantiate(club.GetComponent<SkinnedMeshRenderer>());
+                    newMesh.transform.parent = unitMesh.transform;
+                    newMesh.bones = unitMesh.bones;
+                    newMesh.rootBone = unitMesh.rootBone;
+                }
+
 				unit.SetPlayer(player);
 				flock.AddUnit(unit, offset);
 			}
