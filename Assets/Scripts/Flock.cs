@@ -24,10 +24,15 @@ public class Flock : MonoBehaviour {
 	void Start() {
 		GameObject groundGameObject = GameObject.Find("Ground");
 		groundCollider = groundGameObject.GetComponent<Collider>();
-		Vector3 size = transform.localScale;
 	}
 
 	void Update () {
+		if (units.Count == 0)
+		{
+			Destroy(this);
+			return;
+		}
+
 		if (Input.GetMouseButtonDown(LEFT_MOUSE_BUTTON)) {
 			SelectClick();
 			return;
@@ -48,7 +53,7 @@ public class Flock : MonoBehaviour {
 
 	private void FollowUnits()
 	{
-		if (IsDestinationReached || units.Count == 0)
+		if (IsDestinationReached)
 		{
 			return;
 		}
