@@ -64,6 +64,7 @@ public class Spawner : MonoBehaviour {
 		Quaternion q = new Quaternion();
 		GameObject flockGameObject = Instantiate(flockPrefab, pos, q);
 		Flock flock = flockGameObject.GetComponent<Flock>();
+		flock.Owner = player;
 		for (int i = -1; i <= 1; i++) {
 			for (int j = -1; j <= 1; j++) {
 				float ux = i * unitSize.x * 2;

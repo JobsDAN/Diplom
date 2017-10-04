@@ -16,6 +16,10 @@ public class Flock : MonoBehaviour {
 
 	Collider groundCollider;
 
+	public Player Owner { get; set; }
+
+	public float AttackRadius = 3;
+
 	void Awake() {
 		units = new List<Unit>();
 		positions = new List<Vector3>();
@@ -44,6 +48,27 @@ public class Flock : MonoBehaviour {
 		}
 
 		FollowUnits();
+
+		Vector3 enemy = NearEnemy();
+		if (!enemy.Equals(new Vector3()))
+		{
+			Debug.Log(enemy);
+		}
+	}
+
+	Vector3 NearEnemy()
+	{
+		foreach (Collider c in Physics.OverlapSphere(transform.position, AttackRadius))
+		{
+			Flock flock = c.gameObject.GetComponent<Flock>();
+			if (flock == null)
+				continue;
+
+			if (flock.Owner.PlayerId != Owner.PlayerId)
+				return c.gameObject.transform.position;
+		}
+
+		return new Vector3();
 	}
 
 	private bool IsDestinationReached
